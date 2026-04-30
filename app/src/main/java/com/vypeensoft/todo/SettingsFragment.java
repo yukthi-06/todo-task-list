@@ -1,4 +1,4 @@
-package com.example.todomaster;
+package com.vypeensoft.todo;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
