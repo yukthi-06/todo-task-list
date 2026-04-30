@@ -32,7 +32,7 @@ public class MainFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         FloatingActionButton fab = view.findViewById(R.id.fabAddList);
 
-        todoMaster = XmlManager.read(requireContext());
+        todoMaster = JsonManager.read(requireContext());
         
         adapter = new MasterListAdapter(todoMaster.lists, list -> {
             int index = todoMaster.lists.indexOf(list);
@@ -66,7 +66,7 @@ public class MainFragment extends Fragment {
             if (!name.isEmpty()) {
                 TodoList newList = new TodoList(name);
                 todoMaster.lists.add(newList);
-                XmlManager.save(requireContext(), todoMaster);
+                JsonManager.saveList(newList);
                 int index = todoMaster.lists.size() - 1;
                 adapter.notifyItemInserted(index);
                 Toast.makeText(requireContext(), "Master list created", Toast.LENGTH_SHORT).show();

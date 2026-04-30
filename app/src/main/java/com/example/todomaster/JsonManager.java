@@ -1,0 +1,59 @@
+package com.example.todomaster;
+
+import android.content.Context;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.ArrayList;
+
+public class JsonManager {
+    private static final String BASE_PATH = "/sdcard/Vypeensoft/TODO_Task_LIst/master_lists/";
+    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+    public static File getDirectory() {
+        File dir = new File(BASE_PATH);
+        if (!dir.exists()) dir.mkdirs();
+        return dir;
+    }
+
+    public static TodoMaster read(Context context) {
+        TodoMaster master = new TodoMaster();
+        File dir = getDirectory();
+        File[] files = dir.listFiles((d, name) -> name.endsWith(".json"));
+
+        if (files != null) {
+            for (File file : files) {
+                try (FileReader reader = new FileReader(file)) {
+                    TodoList list = gson.fromJson(reader, TodoList.class);
+                    if (list != null) {
+                        master.lists.add(list);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return master;
+    }
+
+    public static void saveList(TodoList list) {
+        File dir = getDirectory();
+        // Sanitize filename: replace non-alphanumeric with underscore
+        String fileName = list.name.replaceAll("[^a-zA-Z0-9.-]", "_") + ".json";
+        File file = new File(dir, fileName);
+
+        try (FileWriter writer = new FileWriter(file)) {
+            gson.toJson(list, writer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void saveAll(TodoMaster master) {
+        for (TodoList list : master.lists) {
+            saveList(list);
+        }
+    }
+}

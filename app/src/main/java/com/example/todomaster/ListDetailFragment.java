@@ -48,7 +48,7 @@ public class ListDetailFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        todoMaster = XmlManager.read(requireContext());
+        todoMaster = JsonManager.read(requireContext());
         if (listIndex >= 0 && listIndex < todoMaster.lists.size()) {
             currentList = todoMaster.lists.get(listIndex);
         } else {
@@ -81,7 +81,7 @@ public class ListDetailFragment extends Fragment {
             String name = input.getText().toString().trim();
             if (!name.isEmpty()) {
                 currentList.items.add(new TodoItem(name));
-                XmlManager.save(requireContext(), todoMaster);
+                JsonManager.saveList(currentList);
                 adapter.notifyItemInserted(currentList.items.size() - 1);
             }
         });
