@@ -52,6 +52,24 @@ public class JsonManager {
         }
     }
 
+    public static void softDelete(TodoList list) {
+        File dir = getDirectory();
+        String fileName = list.name.replaceAll("[^a-zA-Z0-9.-]", "_") + ".json";
+        File sourceFile = new File(dir, fileName);
+
+        if (sourceFile.exists()) {
+            File deletedDir = new File(dir, "deleted");
+            if (!deletedDir.exists()) deletedDir.mkdirs();
+
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyyMMdd.HHmmss", java.util.Locale.getDefault());
+            String timestamp = sdf.format(new java.util.Date());
+            String newFileName = list.name.replaceAll("[^a-zA-Z0-9.-]", "_") + "_" + timestamp + ".json";
+            File destFile = new File(deletedDir, newFileName);
+
+            sourceFile.renameTo(destFile);
+        }
+    }
+
     public static void saveAll(TodoMaster master) {
         for (TodoList list : master.lists) {
             saveList(list);

@@ -15,6 +15,7 @@ public class MasterListAdapter extends RecyclerView.Adapter<MasterListAdapter.Vi
 
     public interface OnListClickListener {
         void onListClick(TodoList list);
+        void onDeleteClick(TodoList list, int position);
     }
 
     public MasterListAdapter(List<TodoList> lists, OnListClickListener listener) {
@@ -34,6 +35,7 @@ public class MasterListAdapter extends RecyclerView.Adapter<MasterListAdapter.Vi
         TodoList list = lists.get(position);
         holder.textName.setText(list.name);
         holder.itemView.setOnClickListener(v -> listener.onListClick(list));
+        holder.btnDelete.setOnClickListener(v -> listener.onDeleteClick(list, position));
     }
 
     @Override
@@ -43,9 +45,11 @@ public class MasterListAdapter extends RecyclerView.Adapter<MasterListAdapter.Vi
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textName;
+        android.widget.ImageButton btnDelete;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textName = itemView.findViewById(R.id.textListName);
+            btnDelete = itemView.findViewById(R.id.btnDelete);
         }
     }
 }

@@ -34,9 +34,20 @@ public class MainFragment extends Fragment {
 
         todoMaster = JsonManager.read(requireContext());
         
-        adapter = new MasterListAdapter(todoMaster.lists, list -> {
-            int index = todoMaster.lists.indexOf(list);
-            openDetailFragment(index);
+        adapter = new MasterListAdapter(todoMaster.lists, new MasterListAdapter.OnListClickListener() {
+            @Override
+            public void onListClick(TodoList list) {
+                int index = todoMaster.lists.indexOf(list);
+                openDetailFragment(index);
+            }
+
+            @Override
+            public void onDeleteClick(TodoList list, int position) {
+                JsonManager.softDelete(list);
+                todoMaster.lists.remove(position);
+                adapter.notifyItemRemoved(position);
+                Toast.makeText(requireContext(), "List moved to 'deleted' folder", Toast.LENGTH_SHORT).show();
+            }
         });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));

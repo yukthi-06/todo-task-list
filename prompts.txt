@@ -38,6 +38,7 @@ This path /sdcard/Vypeensoft/TODO_Task_LIst/master_lists/ should be configurable
 On startup, app should if folder /sdcard/Vypeensoft/TODO_Task_LIst/master_lists/ doesnt exist, then create it.  Infact, the folder to be checked and created is from the settings
 On startup, app should read the master jsons from /sdcard/Vypeensoft/TODO_Task_LIst/master_lists/*.json and display on the main screen...
 Provide sane color theme, with good contrasts ie.. industry standard/acceptable
+on the main list, provide a delete icon (garbage bin) to delete one master TODO.  It should soft delete the JSON.  ie... rename  it to a FILENAME+timestamp format and move it to an "deleted" folder under the master_list
 
 
 
