@@ -1,6 +1,7 @@
 package com.example.todomaster;
 
 import android.content.Context;
+import android.os.Environment;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.File;
@@ -9,7 +10,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class JsonManager {
-    private static final String BASE_PATH = "/sdcard/Vypeensoft/TODO_Task_LIst/master_lists/";
+    private static final String BASE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Vypeensoft/TODO_Task_LIst/master_lists/";
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public static File getDirectory() {
