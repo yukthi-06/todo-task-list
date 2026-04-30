@@ -28,19 +28,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:padding="24dp"
+            android:gravity="center_horizontal">
 
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="32dp"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/ic_launcher_round" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
                 android:text="@string/app_name"
                 android:textColor="@color/text_primary"
@@ -48,12 +47,10 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tv_version"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="4dp"
-                android:text="Version 1.0"
+                android:text="Version 1.0.0"
                 android:textColor="@color/text_secondary"
                 android:textSize="14sp" />
 
@@ -75,75 +72,42 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="Credits"
+                        android:textColor="@color/primary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Developed by: Shibu Thittayil Narayanan\nLicense: GPL 3.0"
+                        android:textColor="@color/text_primary"
+                        android:textSize="14sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@color/divider" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="Build Information"
                         android:textColor="@color/primary"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="12dp"
-                        android:background="@color/divider" />
-
-                    <TableLayout
+                    <TextView
+                        android:id="@+id/tvBuildInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:stretchColumns="1">
-
-                        <TableRow android:layout_marginBottom="8dp">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingEnd="16dp"
-                                android:text="Build Date"
-                                android:textColor="@color/text_secondary"
-                                android:textSize="13sp" />
-                            <TextView
-                                android:id="@+id/tv_build_date"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="---"
-                                android:textColor="@color/text_primary"
-                                android:textSize="13sp" />
-                        </TableRow>
-
-                        <TableRow android:layout_marginBottom="8dp">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingEnd="16dp"
-                                android:text="Git SHA"
-                                android:textColor="@color/text_secondary"
-                                android:textSize="13sp" />
-                            <TextView
-                                android:id="@+id/tv_git_sha"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="---"
-                                android:textColor="@color/text_primary"
-                                android:textSize="13sp" />
-                        </TableRow>
-
-                        <TableRow>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingEnd="16dp"
-                                android:text="Git Tag"
-                                android:textColor="@color/text_secondary"
-                                android:textSize="13sp" />
-                            <TextView
-                                android:id="@+id/tv_git_tag"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="---"
-                                android:textColor="@color/text_primary"
-                                android:textSize="13sp" />
-                        </TableRow>
-
-                    </TableLayout>
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/text_primary"
+                        android:textSize="13sp"
+                        android:lineSpacingExtra="4dp" />
 
                 </LinearLayout>
 
@@ -152,7 +116,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="48dp"
                 android:text="© 2024 VypeenSoft"
                 android:textColor="@color/text_secondary"

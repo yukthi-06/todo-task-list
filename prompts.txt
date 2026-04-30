@@ -42,6 +42,7 @@ on the main list, provide a delete icon (garbage bin) to delete one master TODO.
 on the sub list, have a checkbox at the end of the line to mark it as complete.  Once marked as complete, strike the item text.  store the competed status in the json as well
 on app start,master list on screen is empty. When user goes to settings and save the folder path, then it is able to pickup the master TODO and populate the screen
 
+Modify AboutActivity.java and related source code in this project according to code taken from X:\Projects_X\0_Active\8_Android_APK\Randomizer_APK_GITHUB\app\src\main\java\com\vypeensoft\randomizer\AboutActivity.java
 
 --------------------------------------------------------------------------------------------
 output

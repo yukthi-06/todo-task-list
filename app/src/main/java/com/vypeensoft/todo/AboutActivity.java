@@ -13,28 +13,28 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
+        String buildInfo = 
+                "Timestamp: " + BuildConfig.BUILD_TIMESTAMP + "\n" +
+                "Commit: " + BuildConfig.GIT_SHA + "\n" +
+                "Full SHA: " + BuildConfig.GIT_SHA_FULL + "\n" +
+                "Tag: " + (BuildConfig.GIT_TAG != null && !BuildConfig.GIT_TAG.isEmpty() ? BuildConfig.GIT_TAG : "N/A") + "\n\n" +
+                getString(R.string.about_description);
+
+        TextView tvBuildInfo = findViewById(R.id.tvBuildInfo);
+        tvBuildInfo.setText(buildInfo);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("About");
+            getSupportActionBar().setTitle(R.string.title_about);
         }
-
-        TextView tvVersion = findViewById(R.id.tv_version);
-        TextView tvBuildDate = findViewById(R.id.tv_build_date);
-        TextView tvGitSha = findViewById(R.id.tv_git_sha);
-        TextView tvGitTag = findViewById(R.id.tv_git_tag);
-
-        tvVersion.setText("Version " + BuildConfig.VERSION_NAME);
-        tvBuildDate.setText(BuildConfig.BUILD_TIMESTAMP);
-        tvGitSha.setText(BuildConfig.GIT_SHA);
-        tvGitTag.setText(BuildConfig.GIT_TAG != null && !BuildConfig.GIT_TAG.isEmpty() ? BuildConfig.GIT_TAG : "N/A");
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
