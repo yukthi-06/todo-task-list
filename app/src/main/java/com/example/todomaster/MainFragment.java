@@ -32,8 +32,20 @@ public class MainFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         FloatingActionButton fab = view.findViewById(R.id.fabAddList);
 
-        todoMaster = JsonManager.read(requireContext());
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        fab.setOnClickListener(v -> showAddListDialog());
         
+        loadData();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
+    }
+
+    private void loadData() {
+        todoMaster = JsonManager.read(requireContext());
         adapter = new MasterListAdapter(todoMaster.lists, new MasterListAdapter.OnListClickListener() {
             @Override
             public void onListClick(TodoList list) {
@@ -49,11 +61,7 @@ public class MainFragment extends Fragment {
                 Toast.makeText(requireContext(), "List moved to 'deleted' folder", Toast.LENGTH_SHORT).show();
             }
         });
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         recyclerView.setAdapter(adapter);
-
-        fab.setOnClickListener(v -> showAddListDialog());
     }
 
     private void openDetailFragment(int index) {

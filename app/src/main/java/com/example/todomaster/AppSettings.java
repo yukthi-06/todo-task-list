@@ -8,9 +8,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 
 public class AppSettings {
-    public String masterListPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Vypeensoft/TODO_Task_LIst/master_lists/";
+    public String masterListPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Vypeensoft/TODO_Task_List/master_lists/";
 
-    private static final String SETTINGS_FILE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Vypeensoft/TODO_Task_LIst/settings/settings.json";
+    private static final String SETTINGS_FILE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Vypeensoft/TODO_Task_List/settings/settings.json";
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public static AppSettings load() {

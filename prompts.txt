@@ -40,7 +40,7 @@ On startup, app should read the master jsons from /sdcard/Vypeensoft/TODO_Task_L
 Provide sane color theme, with good contrasts ie.. industry standard/acceptable
 on the main list, provide a delete icon (garbage bin) to delete one master TODO.  It should soft delete the JSON.  ie... rename  it to a FILENAME+timestamp format and move it to an "deleted" folder under the master_list
 on the sub list, have a checkbox at the end of the line to mark it as complete.  Once marked as complete, strike the item text.  store the competed status in the json as well
-
+on app start,master list on screen is empty. When user goes to settings and save the folder path, then it is able to pickup the master TODO and populate the screen
 
 
 --------------------------------------------------------------------------------------------
