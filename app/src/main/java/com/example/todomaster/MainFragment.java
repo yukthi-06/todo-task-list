@@ -69,7 +69,7 @@ public class MainFragment extends Fragment {
                 XmlManager.save(requireContext(), todoMaster);
                 int index = todoMaster.lists.size() - 1;
                 adapter.notifyItemInserted(index);
-                openDetailFragment(index);
+                Toast.makeText(requireContext(), "Master list created", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(requireContext(), "Name cannot be empty", Toast.LENGTH_SHORT).show();
             }
