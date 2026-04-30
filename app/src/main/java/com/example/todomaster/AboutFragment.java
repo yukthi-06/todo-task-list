@@ -1,4 +1,4 @@
-﻿package com.example.todomaster;
+package com.example.todomaster;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

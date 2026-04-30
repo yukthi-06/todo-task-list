@@ -1,4 +1,4 @@
-﻿package com.example.todomaster;
+package com.example.todomaster;
 import java.util.ArrayList;
 import java.util.List;
 public class TodoList {

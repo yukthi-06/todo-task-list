@@ -1,4 +1,4 @@
-﻿package com.example.todomaster;
+package com.example.todomaster;
 public class TodoItem {
     public String name;
     public TodoItem() {}
