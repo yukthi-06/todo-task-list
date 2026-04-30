@@ -14,9 +14,9 @@ import java.io.File;
 
 public class XmlManager {
     public static File getFile(Context context) {
-        String path = context.getSharedPreferences("Settings", Context.MODE_PRIVATE)
-            .getString("storage_path", context.getFilesDir().getAbsolutePath() + "/todo_master.xml");
-        return new File(path);
+        File dir = new File("/sdcard/Vypeensoft/TODO_Task_LIst/master_lists/");
+        if (!dir.exists()) dir.mkdirs();
+        return new File(dir, "master_todo.xml");
     }
 
     public static TodoMaster read(Context context) {
