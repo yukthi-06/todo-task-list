@@ -62,7 +62,9 @@ public class ListDetailFragment extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewItems);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        adapter = new TodoItemAdapter(currentList.items);
+        adapter = new TodoItemAdapter(currentList.items, () -> {
+            JsonManager.saveList(currentList);
+        });
         recyclerView.setAdapter(adapter);
 
         FloatingActionButton fab = view.findViewById(R.id.fabAddItem);
