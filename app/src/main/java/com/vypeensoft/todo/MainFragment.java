@@ -79,6 +79,7 @@ public class MainFragment extends Fragment {
 
         final EditText input = new EditText(requireContext());
         input.setHint("Enter list name");
+        input.setSingleLine(true);
         builder.setView(input);
 
         builder.setPositiveButton("Create", (dialog, which) -> {
@@ -101,10 +102,10 @@ public class MainFragment extends Fragment {
         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
         
         AlertDialog dialog = builder.create();
-        input.requestFocus();
         if (dialog.getWindow() != null) {
             dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
         dialog.show();
+        input.requestFocus();
     }
 }
