@@ -37,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        getSupportFragmentManager().addOnBackStackChangedListener(() -> {
+            updateActionBarNavigation(toggle);
+        });
+        updateActionBarNavigation(toggle);
+
         navigationView.setNavigationItemSelectedListener(item -> {
             Fragment fragment = null;
             int id = item.getItemId();
@@ -96,5 +102,24 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) drawer.closeDrawer(GravityCompat.START);
         else super.onBackPressed();
+    }
+
+    private void updateActionBarNavigation(ActionBarDrawerToggle toggle) {
+        int backStackCount = getSupportFragmentManager().getBackStackEntryCount();
+        if (backStackCount > 0) {
+            toggle.setDrawerIndicatorEnabled(false);
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            }
+            toggle.setToolbarNavigationClickListener(v -> onBackPressed());
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        } else {
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            }
+            toggle.setDrawerIndicatorEnabled(true);
+            toggle.syncState();
+        }
     }
 }
