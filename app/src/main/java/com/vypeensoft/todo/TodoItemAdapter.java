@@ -17,6 +17,7 @@ public class TodoItemAdapter extends RecyclerView.Adapter<TodoItemAdapter.ViewHo
 
     public interface OnItemChangeListener {
         void onItemChanged();
+        void onEditClick(TodoItem item, int position);
     }
 
     public TodoItemAdapter(List<TodoItem> items, OnItemChangeListener listener) {
@@ -47,6 +48,13 @@ public class TodoItemAdapter extends RecyclerView.Adapter<TodoItemAdapter.ViewHo
             if (listener != null) listener.onItemChanged();
         });
 
+        holder.btnEdit.setOnClickListener(v -> {
+            int currentPosition = holder.getAdapterPosition();
+            if (currentPosition != RecyclerView.NO_POSITION) {
+                if (listener != null) listener.onEditClick(items.get(currentPosition), currentPosition);
+            }
+        });
+
         holder.btnDelete.setOnClickListener(v -> {
             int currentPosition = holder.getAdapterPosition();
             if (currentPosition != RecyclerView.NO_POSITION) {
@@ -75,11 +83,13 @@ public class TodoItemAdapter extends RecyclerView.Adapter<TodoItemAdapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textName;
         CheckBox checkCompleted;
+        ImageButton btnEdit;
         ImageButton btnDelete;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textName = itemView.findViewById(R.id.textItemName);
             checkCompleted = itemView.findViewById(R.id.checkCompleted);
+            btnEdit = itemView.findViewById(R.id.btnEdit);
             btnDelete = itemView.findViewById(R.id.btnDelete);
         }
     }

@@ -61,8 +61,50 @@ public class MainFragment extends Fragment {
                 adapter.notifyItemRemoved(position);
                 Toast.makeText(requireContext(), "List moved to 'deleted' folder", Toast.LENGTH_SHORT).show();
             }
+
+            @Override
+            public void onEditClick(TodoList list, int position) {
+                showEditListDialog(list, position);
+            }
         });
         recyclerView.setAdapter(adapter);
+    }
+
+    private void showEditListDialog(TodoList list, int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Rename Master List");
+
+        final EditText input = new EditText(requireContext());
+        input.setText(list.name);
+        input.setSelection(list.name.length());
+        input.setSingleLine(true);
+        builder.setView(input);
+
+        builder.setPositiveButton("Rename", (dialog, which) -> {
+            String name = input.getText().toString().trim();
+            if (!name.isEmpty()) {
+                String oldName = list.name;
+                list.name = name;
+                JsonManager.renameList(list, oldName);
+                
+                // Keep the list sorted
+                java.util.Collections.sort(todoMaster.lists, (l1, l2) -> l1.name.compareToIgnoreCase(l2.name));
+                adapter.notifyDataSetChanged();
+                
+                Toast.makeText(requireContext(), "Master list renamed", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(requireContext(), "Name cannot be empty", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+        
+        AlertDialog dialog = builder.create();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
+        dialog.show();
+        input.requestFocus();
     }
 
     private void openDetailFragment(int index) {

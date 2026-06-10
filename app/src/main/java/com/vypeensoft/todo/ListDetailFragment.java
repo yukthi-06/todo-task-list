@@ -67,10 +67,47 @@ public class ListDetailFragment extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewItems);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        adapter = new TodoItemAdapter(currentList.items, () -> {
-            JsonManager.saveList(currentList);
+        adapter = new TodoItemAdapter(currentList.items, new TodoItemAdapter.OnItemChangeListener() {
+            @Override
+            public void onItemChanged() {
+                JsonManager.saveList(currentList);
+            }
+
+            @Override
+            public void onEditClick(TodoItem item, int position) {
+                showEditItemDialog(item, position);
+            }
         });
         recyclerView.setAdapter(adapter);
+    }
+
+    private void showEditItemDialog(TodoItem item, int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Edit Item");
+
+        final EditText input = new EditText(requireContext());
+        input.setText(item.name);
+        input.setSelection(item.name.length());
+        input.setSingleLine(true);
+        builder.setView(input);
+
+        builder.setPositiveButton("Save", (dialog, which) -> {
+            String name = input.getText().toString().trim();
+            if (!name.isEmpty()) {
+                item.name = name;
+                JsonManager.saveList(currentList);
+                adapter.notifyItemChanged(position);
+            }
+        });
+
+        builder.setNegativeButton("Cancel", null);
+        
+        AlertDialog dialog = builder.create();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
+        dialog.show();
+        input.requestFocus();
 
         FloatingActionButton fab = view.findViewById(R.id.fabAddItem);
         fab.setOnClickListener(v -> showAddItemDialog());

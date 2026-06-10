@@ -56,6 +56,19 @@ public class JsonManager {
         }
     }
 
+    public static void renameList(TodoList list, String oldName) {
+        File dir = getDirectory();
+        String oldFileName = oldName.replaceAll("[^a-zA-Z0-9.-]", "_") + ".json";
+        File oldFile = new File(dir, oldFileName);
+        
+        saveList(list);
+        
+        String newFileName = list.name.replaceAll("[^a-zA-Z0-9.-]", "_") + ".json";
+        if (!oldFileName.equals(newFileName) && oldFile.exists()) {
+            oldFile.delete();
+        }
+    }
+
     public static void softDelete(TodoList list) {
         File dir = getDirectory();
         String fileName = list.name.replaceAll("[^a-zA-Z0-9.-]", "_") + ".json";
