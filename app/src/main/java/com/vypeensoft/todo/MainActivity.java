@@ -48,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
             int id = item.getItemId();
             if (id == R.id.nav_main) fragment = new MainFragment();
             else if (id == R.id.nav_settings) fragment = new SettingsFragment();
-            else if (id == R.id.nav_matrix) fragment = new MatrixFragment();
-            else if (id == R.id.nav_groups) fragment = new GroupsFragment();
             else if (id == R.id.nav_help) {
                 startActivity(new Intent(MainActivity.this, HelpActivity.class));
             }
