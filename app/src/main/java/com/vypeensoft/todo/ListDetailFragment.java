@@ -79,6 +79,9 @@ public class ListDetailFragment extends Fragment {
             }
         });
         recyclerView.setAdapter(adapter);
+
+        FloatingActionButton fab = view.findViewById(R.id.fabAddItem);
+        fab.setOnClickListener(v -> showAddItemDialog());
     }
 
     private void showEditItemDialog(TodoItem item, int position) {
@@ -108,9 +111,6 @@ public class ListDetailFragment extends Fragment {
         }
         dialog.show();
         input.requestFocus();
-
-        FloatingActionButton fab = view.findViewById(R.id.fabAddItem);
-        fab.setOnClickListener(v -> showAddItemDialog());
     }
 
     private void showAddItemDialog() {
