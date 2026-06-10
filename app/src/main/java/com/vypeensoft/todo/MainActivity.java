@@ -47,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
             Fragment fragment = null;
             int id = item.getItemId();
             if (id == R.id.nav_main) fragment = new MainFragment();
-            else if (id == R.id.nav_settings) fragment = new SettingsFragment();
+            else if (id == R.id.nav_settings) {
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+            }
             else if (id == R.id.nav_help) {
                 startActivity(new Intent(MainActivity.this, HelpActivity.class));
             }
