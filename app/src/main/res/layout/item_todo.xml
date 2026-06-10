@@ -33,7 +33,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@android:drawable/ic_menu_edit"
+            android:src="@drawable/edit"
             android:contentDescription="Edit"
             android:layout_marginStart="8dp"
             app:tint="@color/primary" />
@@ -43,7 +43,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@android:drawable/ic_menu_delete"
+            android:src="@drawable/delete"
             android:contentDescription="Delete"
             android:layout_marginStart="8dp"
             app:tint="@color/error" />
