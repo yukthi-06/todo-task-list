@@ -1,2 +1,2 @@
-gradlew assembleDebug
+call gradlew assembleDebug
 call cop.bat
