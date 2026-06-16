@@ -39,7 +39,6 @@ public class SettingsFragment extends Fragment {
                 }
                 settings.masterListPath = newPath;
                 settings.save();
-                Toast.makeText(requireContext(), "Settings saved to settings.json", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(requireContext(), "Path cannot be empty", Toast.LENGTH_SHORT).show();
             }

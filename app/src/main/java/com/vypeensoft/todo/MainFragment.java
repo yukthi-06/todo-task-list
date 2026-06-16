@@ -59,7 +59,6 @@ public class MainFragment extends Fragment {
                 JsonManager.softDelete(list);
                 todoMaster.lists.remove(position);
                 adapter.notifyItemRemoved(position);
-                Toast.makeText(requireContext(), "List moved to 'deleted' folder", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -90,8 +89,6 @@ public class MainFragment extends Fragment {
                 // Keep the list sorted
                 java.util.Collections.sort(todoMaster.lists, (l1, l2) -> l1.name.compareToIgnoreCase(l2.name));
                 adapter.notifyDataSetChanged();
-                
-                Toast.makeText(requireContext(), "Master list renamed", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(requireContext(), "Name cannot be empty", Toast.LENGTH_SHORT).show();
             }
@@ -134,8 +131,6 @@ public class MainFragment extends Fragment {
                 // Keep the list sorted
                 java.util.Collections.sort(todoMaster.lists, (l1, l2) -> l1.name.compareToIgnoreCase(l2.name));
                 adapter.notifyDataSetChanged();
-                
-                Toast.makeText(requireContext(), "Master list created", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(requireContext(), "Name cannot be empty", Toast.LENGTH_SHORT).show();
             }

@@ -39,7 +39,6 @@ public class SettingsActivity extends AppCompatActivity {
                 }
                 settings.masterListPath = newPath;
                 settings.save();
-                Toast.makeText(this, "Settings saved to settings.json", Toast.LENGTH_SHORT).show();
                 finish();
             } else {
                 Toast.makeText(this, "Path cannot be empty", Toast.LENGTH_SHORT).show();
